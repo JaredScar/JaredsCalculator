@@ -18,6 +18,9 @@ public class CalcFrame extends JFrame {
     private TopPanel topPanel;
     public CalcFrame() {
         calcFrame = this;
+        // Set up icon
+        ImageIcon icon = new ImageIcon("img/icon.png");
+        setIconImage(icon.getImage());
 
         // Add cmpnts
         TopPanel topPanel = new TopPanel();

@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="JaredsCalculator:jar">
+    <output-path>$USER_HOME$/Downloads</output-path>
+    <root id="archive" name="JaredsCalculator.jar">
+      <element id="module-output" name="JaredsCalculator" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
