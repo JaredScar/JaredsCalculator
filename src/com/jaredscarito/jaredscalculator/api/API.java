@@ -124,18 +124,22 @@ public class API {
     private double numInMem = 0.0;
     public void memClear() {
         numInMem = 0.0;
+        CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("");
     }
     public void memRecall() {
         updateText(String.valueOf(numInMem));
+        CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         lastEntryWasOperand = false;
     }
     public void memStore() {
         numInMem = Double.parseDouble(getText());
+        CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
     }
     public void memPlus() {
         double numToAdd = Double.parseDouble(getText());
         numInMem += numToAdd;
         updateText(String.valueOf(numInMem));
+        CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         lastEntryWasOperand = false;
     }
     /**
@@ -176,17 +180,26 @@ public class API {
 
         updateText(currentNum);
         lastEntryWasOperand = false;
+        if(numInMem > 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
+        }
     }
     public void squareRoot() {
         if(Double.parseDouble(currentNum) > 0 && isNumber(currentNum)) {
             double num = Math.sqrt(Double.parseDouble(currentNum));
             updateText(String.valueOf(num));
         }
+        if(numInMem > 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
+        }
     }
     public void oneDivideByX() {
         if(Double.parseDouble(currentNum) > 0 && isNumber(currentNum)) {
             double num = 1 / (Double.parseDouble(currentNum));
             updateText(String.valueOf(num));
+        }
+        if(numInMem > 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         }
     }
     public boolean isNumber(String string) {
@@ -205,6 +218,9 @@ public class API {
         } else {
             String text = getText().replace("-", "");
             updateText(text);
+        }
+        if(numInMem > 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         }
     }
     private String operand1, operand2 = null;
@@ -245,6 +261,9 @@ public class API {
             lastEntryWasOperand = true;
         }
         this.operator = operator;
+        if(numInMem > 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
+        }
     }
     /**
      * Scientific Functions:

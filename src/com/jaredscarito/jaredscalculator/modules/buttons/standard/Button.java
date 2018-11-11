@@ -41,6 +41,8 @@ public class Button extends JButton implements ActionListener {
                 setForeground(Color.BLUE);
                 break;
         }
+        setMargin(new Insets(0, 0, 0, 0));
+        setPreferredSize(new Dimension(100, 40));
         setVisible(true);
     }
 
