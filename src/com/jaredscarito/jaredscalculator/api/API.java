@@ -7,8 +7,6 @@ import com.jaredscarito.jaredscalculator.modules.panels.standard.ButtonPanel;
 import com.jaredscarito.jaredscalculator.modules.panels.standard.SidePanel;
 import com.jaredscarito.jaredscalculator.modules.panels.standard.TopButtonPanel;
 
-import java.util.ArrayList;
-
 /**
  * Created by user on 11/9/2018.
  */
@@ -26,11 +24,11 @@ public class API {
      *
      * Frames:
      *  0: Standard
-     *  1: Scientific
-     *  2: Programmer
+     *  1: Scientific TODO
+     *  2: Programmer TODO
      *  3: About
-     *  4: Options
-     *  5: Properties
+     *  4: Options TODO
+     *  5: Properties TODO
      */
     public void changeFrame(int frame) {
         switch(frame) {
@@ -158,10 +156,16 @@ public class API {
                 updateText(currentNum);
             }
         }
+        if(numInMem == 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
+        }
     }
     public void clearEntry() {
         currentNum = "0.0";
         updateText(String.valueOf(currentResult));
+        if(numInMem == 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
+        }
     }
     public void clearAll() {
         currentNum = "0.0";
@@ -170,6 +174,9 @@ public class API {
         operand1 = null;
         operand2 = null;
         lastEntryWasOperand = false;
+        if(numInMem == 0) {
+            CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
+        }
     }
     public void enterNum(String num) {
         if(currentNum.equals("0.0") || this.lastEntryWasOperand) {
@@ -180,7 +187,7 @@ public class API {
 
         updateText(currentNum);
         lastEntryWasOperand = false;
-        if(numInMem > 0) {
+        if(numInMem == 0) {
             CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         }
     }
@@ -189,7 +196,7 @@ public class API {
             double num = Math.sqrt(Double.parseDouble(currentNum));
             updateText(String.valueOf(num));
         }
-        if(numInMem > 0) {
+        if(numInMem == 0) {
             CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         }
     }
@@ -198,7 +205,7 @@ public class API {
             double num = 1 / (Double.parseDouble(currentNum));
             updateText(String.valueOf(num));
         }
-        if(numInMem > 0) {
+        if(numInMem == 0) {
             CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         }
     }
@@ -219,7 +226,7 @@ public class API {
             String text = getText().replace("-", "");
             updateText(text);
         }
-        if(numInMem > 0) {
+        if(numInMem == 0) {
             CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         }
     }
@@ -261,7 +268,7 @@ public class API {
             lastEntryWasOperand = true;
         }
         this.operator = operator;
-        if(numInMem > 0) {
+        if(numInMem == 0) {
             CalcFrame.getInstance().getDisplayPanel().getMemDisplay().setText("M");
         }
     }
